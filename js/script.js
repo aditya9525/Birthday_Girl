@@ -123,15 +123,21 @@ function initSparkleCanvas() {
 }
 
 /* ==========================================================================
-   3. WEB AUDIO SYNTHESIZER (Happy Birthday Music Box)
+   3. AUDIO ENGINE (MP3 Track + Web Audio Synthesizer Fallback)
    ========================================================================== */
 let audioCtx = null;
 let isMusicPlaying = false;
 let melodyTimeout = null;
+let bgAudio = null;
 
 function initAudioEngine() {
   const musicBtn = document.getElementById('music-toggle-btn');
   if (!musicBtn) return;
+
+  // Initialize HTML5 Audio Object for MP3 track
+  bgAudio = new Audio('assets/audio/nastelbom-happy-birthday-469282.mp3');
+  bgAudio.loop = true;
+  bgAudio.volume = 0.7;
 
   musicBtn.addEventListener('click', () => {
     toggleMusic();
@@ -141,24 +147,35 @@ function initAudioEngine() {
 function toggleMusic() {
   const musicBtn = document.getElementById('music-toggle-btn');
   
-  if (!audioCtx) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioCtx = new AudioContext();
-  }
-
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-
   if (isMusicPlaying) {
-    stopMusicBox();
+    pauseMusic();
     musicBtn.classList.remove('playing');
     isMusicPlaying = false;
   } else {
-    playMusicBox();
+    playMusic();
     musicBtn.classList.add('playing');
     isMusicPlaying = true;
   }
+}
+
+function playMusic() {
+  if (bgAudio) {
+    bgAudio.play().then(() => {
+      console.log('Playing MP3 audio track');
+    }).catch(err => {
+      console.log('MP3 playback failed, using Web Audio Synth fallback', err);
+      playMusicBox();
+    });
+  } else {
+    playMusicBox();
+  }
+}
+
+function pauseMusic() {
+  if (bgAudio && !bgAudio.paused) {
+    bgAudio.pause();
+  }
+  stopMusicBox();
 }
 
 // Play soft piano/music-box Happy Birthday melody

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Happy Birthday! ✨❤️</title>
+  <meta name="description" content="A special birthday surprise created with love.">
+  <meta name="theme-color" content="#fff0f3">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Canvas for floating sparkles & particles -->
+  <canvas id="sparkle-canvas"></canvas>
+
+  <!-- Audio Controls -->
+  <div class="music-control-container">
+    <button id="music-toggle-btn" class="music-btn" aria-label="Toggle Background Music">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <span class="music-waves">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Main Mobile App Shell -->
+  <main class="app-container">
+
+    <!-- 1. LANDING HERO SECTION -->
+    <section id="hero-section" class="section hero-section active">
+      <div class="hero-content">
+
+        <!-- Animated Polaroid Frame -->
+        <div class="hero-photo-wrapper">
+          <div class="photo-glow-ring"></div>
+          <div class="polaroid-card hero-polaroid">
+            <div class="pin">📌</div>
+            <div class="photo-frame">
+              <img src="assets/images/photo1.jpg" alt="Special Person" id="hero-img" class="hero-photo">
+              <div class="photo-overlay-sparkles">✨</div>
+            </div>
+            <p class="polaroid-caption">Birthday Star 🌟</p>
+          </div>
+          <!-- Floating decorative badges -->
+          <div class="badge badge-1">👑 Birthday Queen</div>
+          <div class="badge badge-2">✨ Pure Joy</div>
+        </div>
+
+        <!-- Elegant Heading -->
+        <div class="hero-text-block">
+          <span class="greeting-tag">Special Wish For You</span>
+          <h1 class="hero-title">
+            Hey <span class="name-display" id="hero-name">Bestie</span> <span class="heart-pulse">❤️</span>
+          </h1>
+          <p class="hero-subtitle">Today is all about YOU! ✨</p>
+        </div>
+
+        <!-- Animated CTA Button -->
+        <div class="hero-cta-wrap">
+          <button id="open-surprise-btn" class="btn-primary glow-btn">
+            <span class="btn-text">Open Your Surprise 🎁</span>
+            <span class="btn-sparkle">✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN BIRTHDAY CONTENT (Revealed on Click) -->
+    <div id="main-content" class="main-content hidden">
+
+      <!-- 2. BIRTHDAY REVEAL SECTION -->
+      <section id="reveal-section" class="section reveal-section">
+        <div class="section-card reveal-card">
+          <div class="sparkle-header">✨ 🎉 ✨</div>
+          <h2 class="reveal-title">
+            Happy Birthday, <br><span class="highlight-name" id="reveal-name">Bestie</span> 🎂✨
+          </h2>
+
+          <div class="divider-hearts">
+            <span>💖</span><span>✨</span><span>💖</span>
+          </div>
+
+          <p class="reveal-message" id="reveal-message-text">
+            "Some people make ordinary moments feel special just by being there. Today is your day, so I just wanted to remind you how amazing you are. Keep smiling, keep shining and keep being the wonderful person you are. ❤️"
+          </p>
+
+          <div class="reveal-footer-tags">
+            <span class="tag">#ShineOn</span>
+            <span class="tag">#AlwaysSmiling</span>
+            <span class="tag">#CelebrationDay</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PHOTO MEMORY SECTION -->
+      <section id="gallery-section" class="section gallery-section">
+        <div class="section-header">
+          <span class="section-subtitle">Memories & Smiles</span>
+          <h2 class="section-title">Moments That Shine ✨</h2>
+        </div>
+
+        <p class="gallery-hint">Tap any photo for a surprise 💫</p>
+
+        <div class="photo-gallery-grid">
+          <!-- Card 1 -->
+          <div class="memory-card polaroid-style tilt-left" data-index="0">
+            <div class="tape"></div>
+            <div class="img-wrapper">
+              <img src="assets/images/photo1.jpg" alt="Memory 1" loading="lazy">
+            </div>
+            <p class="caption">Radiant Smile 🌸</p>
+            <div class="heart-react-btn" data-count="12">❤️ <span class="react-num">12</span></div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="memory-card polaroid-style tilt-right" data-index="1">
+            <div class="tape"></div>
+            <div class="img-wrapper">
+              <img src="assets/images/photo2.jpg" alt="Memory 2" loading="lazy">
+            </div>
+            <p class="caption">Coolest Vibe 😎✨</p>
+            <div class="heart-react-btn" data-count="24">❤️ <span class="react-num">24</span></div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="memory-card polaroid-style tilt-left" data-index="2">
+            <div class="tape"></div>
+            <div class="img-wrapper">
+              <img src="assets/images/photo3.jpg" alt="Memory 3" loading="lazy">
+            </div>
+            <p class="caption">Pure Grace 💖</p>
+            <div class="heart-react-btn" data-count="18">❤️ <span class="react-num">18</span></div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="memory-card polaroid-style tilt-right" data-index="3">
+            <div class="tape"></div>
+            <div class="img-wrapper">
+              <img src="assets/images/photo4.jpg" alt="Memory 4" loading="lazy">
+            </div>
+            <p class="caption">Festive Sparkle 🌟</p>
+            <div class="heart-react-btn" data-count="30">❤️ <span class="react-num">30</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. INTERACTIVE BIRTHDAY CAKE SECTION -->
+      <section id="cake-section" class="section cake-section">
+        <div class="section-header">
+          <span class="section-subtitle">Make A Birthday Wish</span>
+          <h2 class="section-title">Blow The Candles 🕯️✨</h2>
+        </div>
+
+        <div class="cake-container">
+          <!-- Interactive HTML/SVG Cake -->
+          <div class="cake-wrapper">
+            <!-- Candles Stage -->
+            <div class="candles-container">
+              <div class="candle candle-1">
+                <div class="flame" id="flame-1"></div>
+                <div class="wick"></div>
+                <div class="candle-body"></div>
+              </div>
+              <div class="candle candle-2">
+                <div class="flame" id="flame-2"></div>
+                <div class="wick"></div>
+                <div class="candle-body"></div>
+              </div>
+              <div class="candle candle-3">
+                <div class="flame" id="flame-3"></div>
+                <div class="wick"></div>
+                <div class="candle-body"></div>
+              </div>
+            </div>
+
+            <!-- Cake Layers -->
+            <div class="cake">
+              <div class="icing-top"></div>
+              <div class="layer layer-top">
+                <span class="berry b1">🍓</span>
+                <span class="berry b2">🍒</span>
+                <span class="berry b3">🍓</span>
+              </div>
+              <div class="cream-fill"></div>
+              <div class="layer layer-bottom"></div>
+              <div class="cake-plate"></div>
+            </div>
+          </div>
+
+          <!-- Wish Status Banner -->
+          <div class="wish-status" id="wish-status-banner">
+            <p class="wish-prompt">Close your eyes and make a special wish!</p>
+          </div>
+
+          <!-- Action Button -->
+          <button id="blow-candles-btn" class="btn-secondary pulse-btn">
+            <span class="btn-icon">🕯️</span>
+            <span class="btn-text" id="wish-btn-text">Make a Wish ✨</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 5. BIRTHDAY MESSAGE CARDS -->
+      <section id="cards-section" class="section cards-section">
+        <div class="section-header">
+          <span class="section-subtitle">Just For You</span>
+          <h2 class="section-title">Little Notes 💖</h2>
+        </div>
+
+        <div class="message-cards-grid">
+          <div class="message-card" data-sound="pop">
+            <div class="card-icon">💖</div>
+            <p class="card-text">"You deserve all the happiness in the world."</p>
+            <div class="card-tap-hint">Tap for sparkle ✨</div>
+          </div>
+
+          <div class="message-card" data-sound="pop">
+            <div class="card-icon">✨</div>
+            <p class="card-text">"Keep smiling, because your smile makes everything brighter."</p>
+            <div class="card-tap-hint">Tap for sparkle ✨</div>
+          </div>
+
+          <div class="message-card" data-sound="pop">
+            <div class="card-icon">🌸</div>
+            <p class="card-text">"May this year bring you beautiful memories and new adventures."</p>
+            <div class="card-tap-hint">Tap for sparkle ✨</div>
+          </div>
+
+          <div class="message-card" data-sound="pop">
+            <div class="card-icon">🎀</div>
+            <p class="card-text">"Never stop being the amazing person you are."</p>
+            <div class="card-tap-hint">Tap for sparkle ✨</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. SURPRISE ENVELOPE SECTION -->
+      <section id="surprise-section" class="section surprise-section">
+        <div class="section-header">
+          <span class="section-subtitle">Grand Finale</span>
+          <h2 class="section-title">One Last Surprise 💌</h2>
+        </div>
+
+        <div class="envelope-wrapper">
+          <button id="open-envelope-btn" class="btn-primary glow-btn-gold">
+            <span>One Last Surprise 💌</span>
+          </button>
+
+          <!-- 3D Envelope Container -->
+          <div class="envelope-container hidden" id="envelope-container">
+            <div class="envelope" id="envelope">
+              <div class="envelope-flap" id="envelope-flap"></div>
+              <div class="envelope-pocket"></div>
+              
+              <!-- Letter inside -->
+              <div class="letter" id="letter">
+                <div class="letter-stamp">🎂</div>
+                <h3 class="letter-heading">Dearest <span class="letter-name" id="letter-name">Bestie</span> ❤️</h3>
+                <div class="letter-body">
+                  <p>
+                    I hope today brings you endless smiles, warm laughter, and all the magical moments you truly deserve.
+                  </p>
+                  <p>
+                    Thank you for being such a bright light, an incredible friend, and someone who brings so much warmth into the world!
+                  </p>
+                </div>
+                <div class="letter-signature">
+                  <p class="final-wish">Happy Birthday once again! 🎉❤️</p>
+                  <p class="final-sub">I hope this little surprise made you smile.</p>
+                  <div class="letter-hearts">💖 ✨ 👑 ✨ 💖</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p class="footer-text">Made with ❤️ specially for your Birthday</p>
+        <button id="replay-btn" class="btn-link">✨ Replay Surprise</button>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Photo Modal Lightbox -->
+  <div id="photo-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="close-modal-btn" class="modal-close-btn">&times;</button>
+      <div class="modal-img-container">
+        <img src="" id="modal-img" alt="Enlarged Photo">
+      </div>
+      <div class="modal-caption-wrap">
+        <h4 id="modal-caption">Photo Title</h4>
+        <p id="modal-sub">Captured moment filled with joy ✨</p>
+      </div>
+      <button class="btn-modal-love" id="modal-love-btn">Send Love ❤️ <span id="modal-heart-count">1</span></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/confetti.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
